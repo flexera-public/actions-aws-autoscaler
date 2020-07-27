@@ -42,7 +42,7 @@ async function run() {
         break;
       }
       core.info("Not in service yet!")
-      child_process.execSync("sleep 2");
+      child_process.execSync("sleep 10");
     }
   } catch (error) {
     core.error(error);
