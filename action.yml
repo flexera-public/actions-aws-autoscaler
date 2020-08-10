@@ -8,6 +8,14 @@ inputs:
     description: 'timeout in minutes'
     required: false
     default: "2"
+  waitBetweenChecks:  
+    description: 'Sleep time between checks in secons'
+    required: false
+    default: "10"    
+  extraWait:  
+    description: 'Sleep for extra time when runner just scaled up'
+    required: false
+    default: "20"
 runs:
   using: 'node12'
   main: 'dist/index.js'
