@@ -15,7 +15,7 @@ inputs:
   extraWait:  
     description: 'Sleep for extra time when runner just scaled up'
     required: false
-    default: "20"
+    default: "60"
 runs:
   using: 'node12'
   main: 'dist/index.js'

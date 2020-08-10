@@ -2,6 +2,15 @@
 
 GitHub Action to set a desired value for an AWS Autoscaling group
 
+## Parameters
+
+| Name | Description | Default | Required |
+| - | - | - | - |
+| `groupName` | Autoscaling group name | | ✔ |
+| `timeoutMinutes` | Timeout in minutes | 2 | |
+| `waitBetweenChecks` | Sleep time between checks in checks | 10 | |
+| `extraWait` | Sleep for extra time when runner just scaled up. [When using needs in other jobs](https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idneeds)  | 60 | |
+
 
 ## Usage
 

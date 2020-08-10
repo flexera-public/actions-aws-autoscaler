@@ -56,12 +56,12 @@ async function run() {
           extraWait = true;
         }
       }
-      core.info("Not in service yet!")
+      core.info(`Not in service yet! Wait for ${WAIT_BETWEEN_CHECKS} seconds.`)
       child_process.execSync(`sleep ${WAIT_BETWEEN_CHECKS}`);
     }
 
     if (extraWait) {
-      core.info("Wait for a little more as this runner just scaled up")
+      core.info(`Wait for ${EXTRA_WAIT} seconds more as this runner just scaled up.`)
       child_process.execSync(`sleep ${EXTRA_WAIT}`);
     }
 
