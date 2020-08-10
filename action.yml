@@ -9,7 +9,7 @@ inputs:
     required: false
     default: "2"
   waitBetweenChecks:  
-    description: 'Sleep time between checks in secons'
+    description: 'Sleep time between checks in seconds'
     required: false
     default: "10"    
   extraWait:  
