@@ -25,3 +25,15 @@ GitHub Action to set a desired value for an AWS Autoscaling group
 AWS environment variables should be set prior to using this action, for example using: [aws-actions/configure-aws-credentials](https://github.com/aws-actions/configure-aws-credentials)
 
 [More details](https://github.com/actions/javascript-action)
+
+## Releasing latest version
+
+- Create a new release from GitHub UI for the latest commit hash.
+- Test the release manually. TODO: Run test automatically.
+- Run the commands below to move the commit hash for `v1` to the latest release:
+```bash
+git checkout main
+git tag --force v1 <latest-release-commit-hash>
+git push --force --tags
+```
+- `v1` release should be used in other pipelines to receive latest updates.
