@@ -1,16 +1,14 @@
-# name: "units-test"
-# on:
-#   pull_request:
-#   push:
-#     branches:
-#       - main
-#       - 'releases/*'
+name: "units-test"
+on:
+  pull_request:
+  push:
 
-# jobs:
-#   # unit tests
-#   units:
-#     runs-on: ubuntu-latest
-#     steps:
-#     - uses: actions/checkout@v2
-#     - run: npm ci
-#     - run: npm test
+
+jobs:
+  # unit tests
+  units:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - run: npm ci
+    - run: npm test
