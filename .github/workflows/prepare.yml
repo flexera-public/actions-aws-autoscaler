@@ -23,9 +23,14 @@ jobs:
           echo "::set-output name=update-needed::true";
         fi
  
+    - name: Set Git Config
+      uses: oleksiyrudenko/gha-git-credentials@v2-latest
+      with:
+        token: '${{ secrets.GITHUB_TOKEN }}'
+
     - name: Push changes
       if: steps.check.outputs.update-needed
-      uses: ad-m/github-push-action@master
+      uses: ad-m/github-push-action@v0.6.0
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         branch: ${{ github.ref }}
