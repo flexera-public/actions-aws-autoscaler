@@ -1,0 +1,29 @@
+name: "prepare"
+
+on:
+  pull_request:
+
+
+jobs:
+  # unit tests
+  units:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Prepare packages
+      run: npm run prepare
+
+    - name: Check GitHub Status
+      id: check
+      run: |
+        if (git status | grep dist); then 
+          git commit -m "Update packages" -- dist;
+          echo "::set-output name=update-needed::true";
+        fi
+ 
+    - name: Push changes
+      if: steps.check.outputs.update-needed
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: ${{ github.ref }}
