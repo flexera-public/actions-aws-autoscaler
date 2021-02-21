@@ -15,6 +15,11 @@ jobs:
         npm ci
         npm run prepare
 
+    - name: Set Git Config
+      uses: oleksiyrudenko/gha-git-credentials@v2-latest
+      with:
+        token: '${{ secrets.GITHUB_TOKEN }}'
+
     - name: Check GitHub Status
       id: check
       run: |
@@ -23,11 +28,6 @@ jobs:
           echo "::set-output name=update-needed::true";
         fi
  
-    - name: Set Git Config
-      uses: oleksiyrudenko/gha-git-credentials@v2-latest
-      with:
-        token: '${{ secrets.GITHUB_TOKEN }}'
-
     - name: Push changes
       if: steps.check.outputs.update-needed
       uses: ad-m/github-push-action@v0.6.0
