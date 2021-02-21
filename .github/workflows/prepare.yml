@@ -1,12 +1,11 @@
-name: "prepare"
+name: "prepare packages"
 
 on:
-  pull_request:
-
+  push:
 
 jobs:
   # unit tests
-  units:
+  prepare-package:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
