@@ -1,9 +1,7 @@
 name: "units-test"
+
 on:
   pull_request:
-  push:
-  workflow_dispatch:
-
 
 jobs:
   # unit tests

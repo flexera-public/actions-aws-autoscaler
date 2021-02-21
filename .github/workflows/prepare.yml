@@ -11,7 +11,9 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Prepare packages
-      run: npm run prepare
+      run: |
+        npm ci
+        npm run prepare
 
     - name: Check GitHub Status
       id: check
