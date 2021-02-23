@@ -28,12 +28,10 @@ AWS environment variables should be set prior to using this action, for example 
 
 ## Releasing latest version
 
-- Create a new release from GitHub UI for the latest commit hash.
-- Test the release manually. TODO: Run test automatically.
-- Run the commands below to move the commit hash for `v1` to the latest release:
-```bash
-git checkout main
-git tag --force v1 <latest-release-commit-hash>
-git push --force --tags
-```
+- Use [release.yml](https://github.com/flexera/actions-aws-autoscaler/actions/workflows/release.yml) to create a new release from GitHub UI.
+- Test the release manually on an internal workflow. (because this is a public repo it is not possible to test a runner with this)
+- Use [update-v1.yml](https://github.com/flexera/actions-aws-autoscaler/actions/workflows/update-v1.yml) to update `v1` to the new release created in the previous step to automatically update other workflows.
 - `v1` release should be used in other pipelines to receive latest updates.
+
+
+
