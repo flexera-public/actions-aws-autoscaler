@@ -22,7 +22,7 @@ const EXTRA_WAIT = core.getInput('extraWait', {
 async function run() {
   try {
 
-    var extraWaitNeeded = autoScaler(GROUP_NAME, TIMEOUT, WAIT_BETWEEN_CHECKS)
+    var extraWaitNeeded = await autoScaler(GROUP_NAME, TIMEOUT, WAIT_BETWEEN_CHECKS)
 
     if (extraWaitNeeded) {
       core.info(`Wait for ${EXTRA_WAIT} seconds more as this runner just scaled up.`)

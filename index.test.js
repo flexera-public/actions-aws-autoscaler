@@ -2,7 +2,7 @@ const autoScaler = require('./autoScaler');
 const AWS = require('aws-sdk-mock');
 const assert = require('assert').strict;
 
-test('Scale up for already running runner', () => {
+test('Scale up for already running runner', async () => {
   AWS.mock('AutoScaling', 'setDesiredCapacity', function (params, callback) {
     callback(null, "successfully put item in database");
   });
@@ -11,14 +11,14 @@ test('Scale up for already running runner', () => {
     callback(null, { "AutoScalingGroups": [{ "Instances": [{ "LifecycleState": "InService" }] }] });
   });
 
-  var waitNeeded = autoScaler("autoscaling-group-01", 1, 1, 1);
+  var waitNeeded = await autoScaler("autoscaling-group-01", 1, 1, 1);
 
   assert.equal(waitNeeded, false)
 
   AWS.restore('AutoScaling');
 });
 
-test('Runner come online after scaling up', () => {
+test('Runner come online after scaling up', async () => {
   AWS.mock('AutoScaling', 'setDesiredCapacity', function (params, callback) {
     callback(null, "successfully put item in database");
   });
@@ -34,7 +34,7 @@ test('Runner come online after scaling up', () => {
     }
   });
 
-  var waitNeeded = autoScaler("autoscaling-group-01", 0.1, 1, 1);
+  var waitNeeded = await autoScaler("autoscaling-group-01", 0.1, 1, 1);
 
   assert.equal(waitNeeded, true)
 
