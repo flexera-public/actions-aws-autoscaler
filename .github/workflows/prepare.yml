@@ -2,7 +2,8 @@ name: "prepare packages"
 
 on:
   push:
-
+    branches:
+      - main
 jobs:
   # unit tests
   prepare-package:
