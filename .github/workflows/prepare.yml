@@ -2,13 +2,15 @@ name: "prepare packages"
 
 on:
   push:
-    branches:
-      - main
+
 jobs:
   # unit tests
   prepare-package:
     runs-on: ubuntu-latest
     steps:
+    - run: |
+        echo ${{ github }}
+
     - uses: actions/checkout@v2
     - name: Prepare packages
       run: |
@@ -34,3 +36,4 @@ jobs:
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         branch: ${{ github.ref }}
+               
