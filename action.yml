@@ -34,6 +34,8 @@ runs:
         while (( SECONDS < secs )); do
           response=$(aws autoscaling describe-auto-scaling-groups --auto-scaling-group-names $GROUP_NAME --query 'AutoScalingGroups[0].Instances[0].LifecycleState');
 
+          echo $response
+
           if [[ "$response" == "InService" ]]; then
             break;
           elif [[ "$response" == "Pending" ]]; then
