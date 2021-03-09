@@ -31,21 +31,20 @@ runs:
 
         secs=$TIMEOUT_MINUTES*60*1000;
         SECONDS=0
-        extraWait=false;
         while (( SECONDS < secs )); do
-          response=$(aws autoscaling describe-auto-scaling-groups --auto-scaling-group-names $GROUP_NAME --query 'AutoScalingGroups[0].Instances[0].LifecycleState')
+          response=$(aws autoscaling describe-auto-scaling-groups --auto-scaling-group-names $GROUP_NAME --query 'AutoScalingGroups[0].Instances[0].LifecycleState');
 
           if [[ "$response" == "InService" ]]; then
             break;
           else if [[ "$response" == "Pending" ]]; then
-            extraWait=true;
+            export extraWait=true;
           fi
 
-          echo "Not in service yet! Wait for $WAIT_BETWEEN_CHECKS seconds."
-          sleep $WAIT_BETWEEN_CHECKS
-        done
+          echo "Not in service yet! Wait for $WAIT_BETWEEN_CHECKS seconds.";
+          sleep $WAIT_BETWEEN_CHECKS;
+        done;
 
         if [[ $extraWait ]]; then
-          echo "Wait for $EXTRA_WAIT seconds more as this runner just scaled up."
-          sleep $EXTRA_WAIT
+          echo "Wait for $EXTRA_WAIT seconds more as this runner just scaled up.";
+          sleep $EXTRA_WAIT;
         fi
