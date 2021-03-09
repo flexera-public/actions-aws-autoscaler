@@ -36,7 +36,7 @@ runs:
 
           if [[ "$response" == "InService" ]]; then
             break;
-          else if [[ "$response" == "Pending" ]]; then
+          elif [[ "$response" == "Pending" ]]; then
             export extraWait=true;
           fi
 
