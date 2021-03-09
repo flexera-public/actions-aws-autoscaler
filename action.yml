@@ -35,6 +35,7 @@ runs:
           response=$(aws autoscaling describe-auto-scaling-groups --auto-scaling-group-names $GROUP_NAME --query 'AutoScalingGroups[0].Instances[0].LifecycleState' --output text);
 
           if [[ "$response" == "InService" ]]; then
+            echo "Runner is in service."
             break;
           elif [[ "$response" == "Pending" ]]; then
             export extraWait=true;
