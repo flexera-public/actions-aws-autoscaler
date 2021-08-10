@@ -3,9 +3,9 @@ name: "Update v1 tag"
 on:
   workflow_dispatch:
     inputs:
-      targetTag:
+      targetCommitHash:
         required: true
-        description: Existing tag that v1 will refer to which will be used in other repos.
+        description: Existing commit hash that v1 will refer to which will be used in other repos.
 
 jobs:
   build:
@@ -20,5 +20,5 @@ jobs:
 
       - name: Bump version and push tag
         run: |
-          git tag --force v1 ${{ github.event.inputs.targetTag }}
+          git tag --force v1 ${{ github.event.inputs.targetCommitHash }}
           git push --force --tags
