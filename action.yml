@@ -1,6 +1,12 @@
 name: 'AWS Autoscaler'
 description: 'Scale up an EC2 instance for GitHub Runners'
 inputs:
+  awsRegion:
+    description: "GitHub Runner's AWS Region"
+    required: true
+  roleToAssume:
+    description: "GitHub Runner's autoscaling group IAM role"
+    required: true
   groupName:  
     description: 'autoscaling group name'
     required: true
@@ -19,6 +25,15 @@ inputs:
 runs:
   using: "composite"
   steps: 
+    - name: 'Configure AWS Credentials'
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-region: ${{ inputs.awsRegion }}
+        role-to-assume: ${{ inputs.roleToAssume }}
+        role-skip-session-tagging: true
+        # 900s/15min is minimum duration
+        role-duration-seconds: 900
+
     - shell: bash
       env:
         GROUP_NAME: ${{ inputs.groupName }}

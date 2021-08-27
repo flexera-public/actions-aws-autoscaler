@@ -6,6 +6,8 @@ GitHub Action to set a desired value for an AWS Autoscaling group
 
 | Name | Description | Default | Required |
 | - | - | - | - |
+| `awsRegion` | AWS Region  | | ✔ |
+| `roleToAssume` | GitHub Runner's autoscaling group IAM role | | ✔ |
 | `groupName` | Autoscaling group name | | ✔ |
 | `timeoutMinutes` | Timeout in minutes | 2 | |
 | `waitBetweenChecks` | Sleep time between checks in checks | 10 | |
