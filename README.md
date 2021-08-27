@@ -20,6 +20,8 @@ GitHub Action to set a desired value for an AWS Autoscaling group
   - name: 'Set desired capacity'
     uses: flexera/actions-aws-autoscaler@v1
     with:
+      awsRegion: 'us-east-1'
+      roleToAssume: 'autoscaling-iam-role-arn'
       groupName: 'autoscaling-group-name'
       timeoutMinutes: 2
 ```
