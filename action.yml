@@ -1,24 +1,24 @@
 name: 'AWS Autoscaler'
 description: 'Scale up an EC2 instance for GitHub Runners'
 inputs:
-  awsRegion:
+  aws-region:
     description: "GitHub Runner's AWS Region"
     required: true
-  roleToAssume:
+  role-to-assume:
     description: "GitHub Runner's autoscaling group IAM role"
     required: true
-  groupName:  
+  auto-scaling-group-name:  
     description: 'autoscaling group name'
     required: true
-  timeoutMinutes:  
+  timeout-minutes:  
     description: 'timeout in minutes'
     required: false
     default: "2"
-  waitBetweenChecks:  
+  wait-between-checks:  
     description: 'Sleep time between checks in seconds'
     required: false
     default: "10"    
-  extraWait:  
+  extra-wait:  
     description: 'Sleep for extra time when runner just scaled up in seconds'
     required: false
     default: "60"
@@ -28,8 +28,8 @@ runs:
     - name: 'Configure AWS Credentials'
       uses: aws-actions/configure-aws-credentials@v1
       with:
-        aws-region: ${{ inputs.awsRegion }}
-        role-to-assume: ${{ inputs.roleToAssume }}
+        aws-region: ${{ inputs.aws-region }}
+        role-to-assume: ${{ inputs.role-to-assume }}
         role-skip-session-tagging: true
         # 900s/15min is minimum duration
         role-duration-seconds: 900
@@ -37,9 +37,9 @@ runs:
     - shell: bash
       env:
         GROUP_NAME: ${{ inputs.groupName }}
-        TIMEOUT_MINUTES: ${{ inputs.timeoutMinutes }}
-        WAIT_BETWEEN_CHECKS: ${{ inputs.waitBetweenChecks }}
-        EXTRA_WAIT: ${{ inputs.extraWait }}
+        TIMEOUT_MINUTES: ${{ inputs.timeout-minutes }}
+        WAIT_BETWEEN_CHECKS: ${{ inputs.wait-between-checks }}
+        EXTRA_WAIT: ${{ inputs.extra-wait }}
       run: |
         echo "Scaled up the autoscaling group ($GROUP_NAME) to 1"
         aws autoscaling set-desired-capacity --auto-scaling-group-name $GROUP_NAME --desired-capacity 1
