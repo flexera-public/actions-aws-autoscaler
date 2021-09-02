@@ -6,20 +6,23 @@ GitHub Action to set a desired value for an AWS Autoscaling group
 
 | Name | Description | Default | Required |
 | - | - | - | - |
-| `groupName` | Autoscaling group name | | ✔ |
-| `timeoutMinutes` | Timeout in minutes | 2 | |
-| `waitBetweenChecks` | Sleep time between checks in checks | 10 | |
-| `extraWait` | Sleep for extra time when runner just scaled up. [When using needs in other jobs](https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idneeds)  | 60 | |
+| `aws-region` | AWS Region  | | ✔ |
+| `role-to-assume` | GitHub Runner's autoscaling group IAM role | | ✔ |
+| `auto-scaling-group-name` | Autoscaling group name | | ✔ |
+| `timeout-minutes` | Timeout in minutes | 2 | |
+| `wait-between-checks` | Sleep time between checks in checks | 10 | |
+| `extra-wait` | Sleep for extra time when runner just scaled up. [When using needs in other jobs](https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idneeds)  | 60 | |
 
 
 ## Usage
 
 ```yaml
   - name: 'Set desired capacity'
-    uses: flexera/actions-aws-autoscaler@v1
+    uses: flexera/actions-aws-autoscaler@v2
     with:
-      groupName: 'autoscaling-group-name'
-      timeoutMinutes: 2
+      aws-region: 'us-east-1'
+      role-to-assume: 'autoscaling-iam-role-arn'
+      auto-scaling-group-name: 'autoscaling-group-name'
 ```
 
 AWS environment variables should be set prior to using this action, for example using: [aws-actions/configure-aws-credentials](https://github.com/aws-actions/configure-aws-credentials)
