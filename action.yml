@@ -36,7 +36,7 @@ runs:
 
     - shell: bash
       env:
-        GROUP_NAME: ${{ inputs.groupName }}
+        GROUP_NAME: ${{ inputs.auto-scaling-group-name }}
         TIMEOUT_MINUTES: ${{ inputs.timeout-minutes }}
         WAIT_BETWEEN_CHECKS: ${{ inputs.wait-between-checks }}
         EXTRA_WAIT: ${{ inputs.extra-wait }}
