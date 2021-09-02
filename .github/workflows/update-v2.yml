@@ -1,0 +1,24 @@
+name: "Update v2 tag"
+
+on:
+  workflow_dispatch:
+    inputs:
+      targetCommitHash:
+        required: true
+        description: Existing commit hash that v1 will refer to which will be used in other repos.
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set Git Config
+        uses: oleksiyrudenko/gha-git-credentials@v2-latest
+        with:
+          token: '${{ secrets.GITHUB_TOKEN }}'
+
+      - name: Bump version and push tag
+        run: |
+          git tag --force v2 ${{ github.event.inputs.targetCommitHash }}
+          git push --force --tags
