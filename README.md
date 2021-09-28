@@ -31,7 +31,10 @@ AWS environment variables should be set prior to using this action, for example 
 
 ## Releasing latest version
 
-- Create a new release with minor version depends on the change.
+- Make a New Release based on [Semantic Versioning](https://semver.org).  Given a version number MAJOR.MINOR.PATCH, increment the:
+     - MAJOR version when you make incompatible API changes
+     - MINOR version when you add functionality in a backwards compatible manner
+     - PATCH version when you make backwards compatible bug fixes
 - Test the release manually on an internal workflow. (because this is a public repo it is not possible to test a runner with this)
 - Use [update-v2.yml](https://github.com/flexera/actions-aws-autoscaler/actions/workflows/update-v2.yml) to move the `v2` tag to the new release created in the previous step to automatically update other workflows.
 - `v2` tags should be used in other pipelines to receive latest updates.
